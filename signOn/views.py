@@ -17,9 +17,10 @@ def validate(request):
         U1 = models.User()
         U1.username = "Bob1234"
         U1.password = "password"
+        U1.name = "Bob"
 
         if u_name == U1.username and p_word == U1.password:
-            return render(request, 'userpage.html', {'username' : U1.username})
+            return render(request, 'userpage.html', {'info' : U1})
         else:
             messages.info(request, "Invalid user credentials")
             return redirect(home)
