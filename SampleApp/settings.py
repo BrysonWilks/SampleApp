@@ -21,6 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
+""" - Only for production purposes
 # SETTING THE ENV VARIABLE
 dotenv_file = os.path.join(BASE_DIR, ".env")
 if os.path.isfile(dotenv_file):
@@ -28,7 +29,10 @@ if os.path.isfile(dotenv_file):
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ['SECRET_KEY']
+SECRET_KEY = os.environ.get('secret_key')
+"""
+
+SECRET_KEY = 'django-insecure-x=c79wrf77_em1*hpf%ab7umxgwwbx1l+!=k6*op4-(vjofqhh'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
