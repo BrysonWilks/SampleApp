@@ -9,11 +9,15 @@
 
     {% csrf_token %}
 
-    Enter your username: <input type = "Text" name = "username"><br>
-    Enter your password: <input type = "Text" name = "password"><br>
-    <p style="color:red">{{error_message}}</p>
+    Enter your username: <input type = "Text" name = "username" placeholder = "Enter your username"><br>
+    Enter your password: <input type = "Password" name = "password" placeholder = "Enter your password"><br>
 
     <input type="submit">
 </form>
 
+<div>
+  {% for message in messages %}
+    <h3 style="color:tomato">{{message}}</h3>
+  {% endfor %}
+</div>
 {% endblock %}
