@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.contrib.auth.models import User, auth
 from . import models
-from .models import User, Book
+from .models import Book
 
 # Create your views here.
 def home(request):
@@ -12,18 +13,14 @@ def validate(request):
 
     if request.method == 'POST':
 
-        u_name = request.POST['username']
-        p_word = request.POST['password']
+        username = request.POST['username']
+        password = request.POST['password']
 
-        U1 = User.objects.all()
+        user = auth.authenticate(username=username,password=password)
 
-        for a in U1:
-            if u_name == a.username and p_word == a.password:
-                 return render(request, 'userpage.html', {'info' : U1})
-        """
-        if u_name in U1.username and p_word in U1.password:
-            return render(request, 'userpage.html', {'info' : U1})
+        if user is not None:
+            auth.login(request, user)
+            return render(request, 'userpage.html', {'user':user})
         else:
             messages.info(request, "Invalid user credentials")
-            return redirect(home)
-        """
+            return render(request, 'home.html')
